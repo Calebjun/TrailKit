@@ -11,5 +11,6 @@ public enum GearStatus
     Available,
     Unavailable,
     UnderRepair,
+    NeedsCleaning,
     Retired
 }
