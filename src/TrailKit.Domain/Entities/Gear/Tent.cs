@@ -59,7 +59,7 @@ public class Tent : Gear
         Weight = weight;
         
         // Fixed deposit amount for all tents
-        DepositAmount = 50.00m;
+        DepositAmount = 30.00m;
         
         // Fixed maintenance threshold
         MaintenanceThreshold = 15;
