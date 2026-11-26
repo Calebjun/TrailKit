@@ -1,5 +1,11 @@
+// Author: Alison
+// Purpose: To represent a concrete Kayak available for rent in the catalog.
+
 namespace TrailKit.Domain.Entities.Gear;
 
+/// <summary>
+/// A single kayak in the catalog.
+/// </summary>
 public class Kayak : Gear
 {
     #region Fields
@@ -77,7 +83,7 @@ public class Kayak : Gear
         Length = length;
         
         // Fixed deposit amount for all Kayaks
-        DepositAmount = 50.00m;
+        DepositAmount = 70.00m;
         
         // Fixed maintenance threshold
         MaintenanceThreshold = 10;
