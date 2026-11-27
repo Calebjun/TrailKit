@@ -13,18 +13,21 @@ namespace TrailKit.Web.Controllers;
 
 /// <summary>
 /// Author: Utsah Tamang
-/// Description: MVC controller for UC8 Create Account (Register, Login, Logout, staff creation).
-/// Contains no business rules; it calls the service and picks the view.
+/// Description: MVC controller for UC4 (My Account, Customer Management) and UC8 (Register, Login,
+/// staff creation). Contains no business rules; it calls the services and picks the view.
 /// </summary>
 [Authorize]
 public class CustomersController : Controller
 {
+    private readonly ICustomerService _customerService;
     private readonly IAccountService _accountService;
 
     /// <summary>Creates the controller.</summary>
+    /// <param name="customerService">UC4 service.</param>
     /// <param name="accountService">UC8 service.</param>
-    public CustomersController(IAccountService accountService)
+    public CustomersController(ICustomerService customerService, IAccountService accountService)
     {
+        _customerService = customerService;
         _accountService = accountService;
     }
 
@@ -107,6 +110,25 @@ public class CustomersController : Controller
         return RedirectToAction("Index", "Home");
     }
 
+    /// <summary>Shows the signed-in customer's rentals, history, charges and deposits.</summary>
+    /// <returns>The MyAccount view.</returns>
+    [HttpGet]
+    public async Task<IActionResult> MyAccount()
+    {
+        int id = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        ServiceResult<AccountSummaryDto> result = await _customerService.GetAccountSummaryAsync(id);
+        if (!result.Success)
+        {
+            return NotFound();
+        }
+        return View(result.Value);
+    }
+
+    /// <summary>Shows the manager's customer table (data loads through the Web API).</summary>
+    /// <returns>The Manage view.</returns>
+    [Authorize(Roles = nameof(UserRole.Manager)), HttpGet]
+    public IActionResult Manage() => View();
+
     /// <summary>Shows the form for creating a staff or manager account.</summary>
     /// <returns>The CreateStaff view.</returns>
     [Authorize(Roles = nameof(UserRole.Manager)), HttpGet]
@@ -114,7 +136,7 @@ public class CustomersController : Controller
 
     /// <summary>Creates a staff or manager account with the chosen role.</summary>
     /// <param name="model">Submitted form.</param>
-    /// <returns>Redirect to the home page on success.</returns>
+    /// <returns>Redirect to Manage on success.</returns>
     [Authorize(Roles = nameof(UserRole.Manager)), HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateStaff(CreateStaffViewModel model)
     {
@@ -139,7 +161,7 @@ public class CustomersController : Controller
         }
 
         TempData["Message"] = $"{model.Role} account created for {model.Name}.";
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction(nameof(Manage));
     }
 
     /// <summary>Shown when a signed-in user opens a page their role cannot use.</summary>
