@@ -1,7 +1,7 @@
 // Author: Alison
 // Purpose: To represent a concrete Bike available for rent in the catalog.
 
-namespace TrailKit.Domain.Entities.Gear;
+namespace TrailKit.Domain.Entities;
 
 /// <summary>
 /// A single bike in the catalog.
