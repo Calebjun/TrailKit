@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TrailKit.Application.Rules;
 using TrailKit.Application.Services;
 using TrailKit.Domain.Entities.Customers;
 using TrailKit.Infrastructure.Data;
@@ -14,10 +15,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<TrailKitDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("TrailKitDb")));
 
-// ---- Utsah: UC8 Create Account ----
+// ---- Utsah: UC4 Manage Customers + UC8 Create Account ----
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
+builder.Services.AddScoped<IStandingEvaluator, StandingEvaluator>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+// TEMPORARY until the rental tables are mapped: swap for a real IRentalQueryRepository.
+builder.Services.AddScoped<IRentalQueryRepository, PlaceholderRentalQueryRepository>();
 
 // ---- Teammates register their services below ----
 // Alison: catalog service / repositories

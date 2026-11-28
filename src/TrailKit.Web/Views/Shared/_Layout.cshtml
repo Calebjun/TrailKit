@@ -22,8 +22,13 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
                         @* Alison / Layan / Caleb: add your menu links inside the role blocks below. *@
+                        @if (User.IsInRole("Customer"))
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-controller="Customers" asp-action="MyAccount">My Account</a></li>
+                        }
                         @if (User.IsInRole("Manager"))
                         {
+                            <li class="nav-item"><a class="nav-link" asp-controller="Customers" asp-action="Manage">Customers</a></li>
                             <li class="nav-item"><a class="nav-link" asp-controller="Customers" asp-action="CreateStaff">Add staff</a></li>
                         }
                     </ul>
