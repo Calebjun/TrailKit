@@ -9,7 +9,7 @@ namespace TrailKit.Domain.Entities.Gear;
 public class Bike : Gear
 {
     #region Fields
-    /// <summary>The type of bike. E.g. mountain, road, gravel.</summary>
+    /// <summary>The type of bike. E.g. mountain, road, gravel, etc.</summary>
     private string _bikeType;
 
     /// <summary>The intended age group for the bike. Can be infant, child, youth, or adult.</summary>
