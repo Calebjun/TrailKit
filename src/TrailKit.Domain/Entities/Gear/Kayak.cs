@@ -1,7 +1,7 @@
 // Author: Alison
 // Purpose: To represent a concrete Kayak available for rent in the catalog.
 
-namespace TrailKit.Domain.Entities.Gear;
+namespace TrailKit.Domain.Entities;
 
 /// <summary>
 /// A single kayak in the catalog.

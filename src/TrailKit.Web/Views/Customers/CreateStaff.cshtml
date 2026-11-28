@@ -1,0 +1,33 @@
+@* Author: Utsah Tamang. Manager creates staff or manager accounts (UC8). *@
+@model TrailKit.Web.Models.ViewModels.CreateStaffViewModel
+@{ ViewData["Title"] = "Add staff"; }
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h1 class="h3 mb-3">Add a staff or manager account</h1>
+    <form asp-action="CreateStaff" method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+        <div class="mb-3"><label asp-for="Role" class="form-label"></label>
+            <select asp-for="Role" class="form-select">
+                <option value="CounterStaff">Counter Staff</option>
+                <option value="Manager">Manager</option>
+            </select></div>
+        <div class="mb-3"><label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" /><span asp-validation-for="Name" class="text-danger"></span></div>
+        <div class="mb-3"><label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" /><span asp-validation-for="Email" class="text-danger"></span></div>
+        <div class="mb-3"><label asp-for="Phone" class="form-label"></label>
+            <input asp-for="Phone" class="form-control" /><span asp-validation-for="Phone" class="text-danger"></span></div>
+        <div class="mb-3"><label asp-for="BirthDate" class="form-label"></label>
+            <input asp-for="BirthDate" type="date" class="form-control" /><span asp-validation-for="BirthDate" class="text-danger"></span></div>
+        <div class="mb-3"><label asp-for="Password" class="form-label"></label>
+            <input asp-for="Password" class="form-control" /><span asp-validation-for="Password" class="text-danger"></span></div>
+        <div class="mb-3"><label asp-for="ConfirmPassword" class="form-label"></label>
+            <input asp-for="ConfirmPassword" class="form-control" /><span asp-validation-for="ConfirmPassword" class="text-danger"></span></div>
+        <button type="submit" class="btn btn-success">Create account</button>
+    </form>
+  </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
