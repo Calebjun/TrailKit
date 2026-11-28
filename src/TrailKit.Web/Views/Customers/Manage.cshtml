@@ -1,0 +1,40 @@
+@* Author: Utsah Tamang. UC4 Customer Management. Data loads through the Web API with jQuery AJAX. *@
+@{ ViewData["Title"] = "Customer Management"; }
+<h1 class="h3 mb-3">Customer Management</h1>
+
+<div class="row g-2 mb-3">
+    <div class="col-md-3">
+        <select id="standingFilter" class="form-select">
+            <option value="">All standings</option>
+            <option value="Good">Good</option>
+            <option value="Suspended">Suspended</option>
+        </select>
+    </div>
+    <div class="col-md-5"><input id="searchBox" class="form-control" placeholder="Search by name or email" /></div>
+</div>
+
+<div id="errorBox" class="alert alert-danger d-none"></div>
+<table class="table align-middle" id="customerTable">
+    <thead><tr><th>Name</th><th>Email</th><th>Standing</th><th>Unpaid</th><th></th></tr></thead>
+    <tbody></tbody>
+</table>
+<p id="emptyState" class="text-muted d-none">No customers match this filter.</p>
+
+<div class="modal fade" id="waiveModal" tabindex="-1">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Waive charge</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <label for="waiveReason" class="form-label">Reason</label>
+      <input id="waiveReason" class="form-control" maxlength="200" />
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      <button type="button" class="btn btn-warning" id="confirmWaive">Waive charge</button>
+    </div>
+  </div></div>
+</div>
+
+@section Scripts {
+    <script src="~/js/customerManagement.js"></script>
+}
