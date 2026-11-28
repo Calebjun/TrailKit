@@ -1,7 +1,7 @@
 // Author: Alison
 // Purpose: To represent a concrete Tent available for rent in the catalog.
 
-namespace TrailKit.Domain.Entities;
+namespace TrailKit.Domain.Entities.Gear;
 
 /// <summary>
 /// A single tent in the catalog.

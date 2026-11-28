@@ -2,7 +2,7 @@
 // Purpose: To represent an abstract gear item available for rent.
 
 using TrailKit.Domain.Enums;
-namespace TrailKit.Domain.Entities;
+namespace TrailKit.Domain.Entities.Gear;
 
 /// <summary>
 /// A single gear item available for rent in the catalog.
